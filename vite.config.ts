@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: 'nivara.technologies.website',
+    base: '/nivara.technologies.website/',
 
     plugins: [react(), tailwindcss()],
 
