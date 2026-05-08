@@ -34,8 +34,8 @@ import {
 /*  Brand mark                                                                */
 /* -------------------------------------------------------------------------- */
 
-const Logo = ({ inverted = false }: { inverted?: boolean }) => (
-  <a href="#home" data-testid="logo-link" className="flex items-center gap-2.5 group">
+const Logo = ({ inverted = false, testId = 'logo-link' }: { inverted?: boolean; testId?: string }) => (
+  <a href="#home" data-testid={testId} className="flex items-center gap-2.5 group">
     <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#D90429] shadow-red-glow group-hover:scale-105 transition-transform">
       <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#FF1A3F] to-[#B30321]" />
       <span className="relative font-display font-extrabold text-white text-xl italic tracking-tight">N</span>
@@ -163,7 +163,7 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
-        <Logo />
+        <Logo testId="nav-logo-link" />
 
         <div className="hidden lg:flex items-center gap-9">
           {links.map((l) => (
@@ -1159,7 +1159,7 @@ const Footer = () => {
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid lg:grid-cols-12 gap-12 pb-12 border-b border-white/10">
           <div className="lg:col-span-5">
-            <Logo inverted />
+            <Logo inverted testId="footer-logo-link" />
             <p className="mt-5 text-white/65 max-w-sm leading-relaxed">
               UK-based IT consultancy delivering calm, dependable technology for ambitious
               businesses. Digital peace of mind, every day.
