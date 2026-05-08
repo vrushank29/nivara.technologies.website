@@ -20,10 +20,12 @@ jobs:
           node-version: 20
 
       - run: npm install
+        working-directory: frontend
 
       - run: npm run build
+        working-directory: frontend
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./frontend/dist
