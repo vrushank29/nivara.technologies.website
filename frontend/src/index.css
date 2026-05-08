@@ -1,10 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --color-navy: #0A1628;
-  --color-electric: #2563EB;
+  --font-display: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-red: #D90429;
+  --color-brand-red-dark: #B30321;
+  --color-brand-red-soft: #FFE4E7;
+  --color-brand-navy: #1D3557;
+  --color-brand-charcoal: #0F1B2D;
+  --color-brand-surface: #F5F5F5;
+  --color-brand-muted: #4B5563;
+  --color-brand-border: #E5E7EB;
 }
 
 @layer base {
@@ -12,17 +19,64 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply font-sans text-navy bg-white antialiased;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    color: #1D3557;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Poppins", "Inter", sans-serif;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background-color: #D90429;
+    color: #ffffff;
   }
 }
 
 @layer utilities {
-  .bg-grid-white {
-    background-size: 40px 40px;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  .font-display {
+    font-family: "Poppins", "Inter", sans-serif;
   }
-  .bg-dot-pattern {
-    background-image: radial-gradient(#2563EB 0.5px, transparent 0.5px);
-    background-size: 20px 20px;
+  .bg-dot-grid {
+    background-image: radial-gradient(rgba(29, 53, 87, 0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .bg-dot-grid-light {
+    background-image: radial-gradient(rgba(29, 53, 87, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .shadow-soft {
+    box-shadow: 0 8px 30px rgba(15, 27, 45, 0.06);
+  }
+  .shadow-soft-lg {
+    box-shadow: 0 24px 60px rgba(15, 27, 45, 0.08);
+  }
+  .shadow-red-glow {
+    box-shadow: 0 14px 40px rgba(217, 4, 41, 0.25);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
   }
 }
