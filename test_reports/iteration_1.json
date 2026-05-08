@@ -1,0 +1,30 @@
+{
+  "summary": "Frontend-only landing page testing for Nivara Ltd. Tested page load, navbar (sticky+blur on scroll), hero section (headline, CTAs, trust badges, image), all 6 service cards, About pillars, Why Us 4 stat cards + How we work panel, 3 testimonials, Contact phone/email/form with mailto submission confirmation, footer, back-to-top, mobile menu, and broken images/console errors. 51 of 52 checks passed. Only finding is duplicate data-testid 'logo-link' (used in Navbar AND Footer), which is a minor uniqueness violation per spec.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Logo (Navbar+Footer)", "issue": "data-testid=\"logo-link\" appears twice (once in Navbar, once in Footer). Spec requires all data-testids to be unique. Differentiate, e.g., 'nav-logo-link' and 'footer-logo-link'.", "selector": "[data-testid=\"logo-link\"]", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Make data-testid 'logo-link' unique by using distinct testids in Navbar vs Footer (e.g., 'nav-logo-link' and 'footer-logo-link')."
+  ],
+  "critical_code_review_comments": [
+    "App.tsx is ~1285 lines — consider splitting Navbar/Hero/About/Services/WhyUs/Testimonials/Contact/Footer into separate component files for maintainability (>700 line guideline).",
+    "Logo component renders the same data-testid in both Navbar and Footer — selectors will match 2 elements.",
+    "Contact form mailto submission is intentional (no backend), and confirmation UI 'Message ready in your email client' works correctly."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (no backend)", "frontend": "98% (51/52 checks pass)"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Pure frontend Vite+React landing page. Public URL: https://19a46095-aeaf-4345-940d-715aa5e25bcf.preview.emergentagent.com. No backend/api endpoints. Contact form uses mailto: which sets window.location.href — playwright's page.route('mailto:**', abort) suppresses navigation while still allowing the React state to update to show 'Message ready in your email client' confirmation. To test mobile menu, use viewport 390x844. All sections use clear data-testids: hero-section, about-section, services-section, why-section, testimonials-section, contact-section, footer, primary-nav, mobile-menu, back-to-top, contact-form, contact-input-{name|email|phone|message}, contact-submit, service-card-{slug}, why-card-{0..3}, testimonial-card-{0..2}, about-pillar-{trustworthy|responsive|secure|personal}.",
+  "rca of the issue": "Duplicate logo-link testid is by design — the Logo component is reused in Navbar and Footer with the same data-testid hardcoded in the component body. Fix: pass a testid prop or use distinct ids per location."
+}
