@@ -1,0 +1,131 @@
+{
+  "theme_and_archetype": {
+    "domain": "IT Consulting",
+    "theme": "LIGHT",
+    "archetype": "4 (Swiss & High-Contrast) + Organic Touch",
+    "vibe": "Calm, professional, trustworthy, modern, minimal. Focus on 'Digital Peace of Mind'."
+  },
+  "color_palette": {
+    "primary": "#D90429",
+    "primary_foreground": "#FFFFFF",
+    "secondary": "#1D3557",
+    "secondary_foreground": "#FFFFFF",
+    "background": "#FFFFFF",
+    "surface": "#F5F5F5",
+    "text_main": "#1D3557",
+    "text_muted": "#4B5563",
+    "accent": "#D90429",
+    "border": "#E5E7EB"
+  },
+  "typography": {
+    "headings": {
+      "family": "Poppins, sans-serif",
+      "style": "Clean, authoritative, tracking-tight for larger sizes",
+      "weights": ["400", "600", "700"]
+    },
+    "body": {
+      "family": "Inter, sans-serif",
+      "style": "Highly legible, geometric sans",
+      "weights": ["400", "500"]
+    },
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1D3557]",
+      "h2": "text-3xl sm:text-4xl font-semibold tracking-tight text-[#1D3557]",
+      "h3": "text-xl sm:text-2xl font-semibold text-[#1D3557]",
+      "body": "text-base text-[#4B5563] leading-relaxed",
+      "small": "text-sm text-[#4B5563]"
+    }
+  },
+  "layout_and_spacing": {
+    "spacing_scale": "Generous spacing. Use p-8 to p-24 for section padding.",
+    "container": "max-w-7xl mx-auto px-6 sm:px-8",
+    "grid_system": "Bento-style grids for features/services. Wide gaps (gap-8 to gap-12).",
+    "borders_and_radius": "Rounded corners (rounded-2xl or rounded-3xl) for cards to soften the corporate feel.",
+    "shadows": "Soft, diffuse shadows (shadow-[0_8px_30px_rgb(0,0,0,0.04)]) rather than harsh outlines, creating a premium floating effect."
+  },
+  "components_strategy": {
+    "buttons": "Rounded-full (pill shape) for primary CTAs using #D90429. Hover state: slightly darker red or transform -translate-y-1 with shadow.",
+    "cards": "Surface background #F5F5F5 or White with soft shadow. Minimalist internal padding (p-8).",
+    "icons": "lucide-react, styled with primary red or dark navy.",
+    "wave_shapes": "Implement organic SVG ribbons and layered curves using standard HTML/SVG or CSS. Positioned at bottom of Hero or as section dividers. Must use #D90429 or variants with opacity layering.",
+    "navigation": "Sticky nav (backdrop-blur-xl bg-white/80). Visible desktop links, CTA button on right."
+  },
+  "motion_and_interactions": {
+    "hover": "Subtle lifts (-translate-y-1) and shadow expansions on cards.",
+    "scroll": "Framer motion for staggered fade-up entrances on scroll.",
+    "micro_interactions": "Icon scaling on card hover, button background slides."
+  },
+  "sections_breakdown": [
+    {
+      "name": "Navigation",
+      "details": "Sticky header, Nivara Ltd logo (text or simple SVG), links (About, Services, Why Us, Testimonials), 'Book Consultation' CTA."
+    },
+    {
+      "name": "Hero",
+      "details": "Headline: 'Digital Peace of Mind'. Subheadline: IT consulting for modern business. Dual CTAs: 'Book Consultation' (Red Pill) and 'Get IT Support' (Outline). Background: White/Light grey with abstract smooth red wave/curve SVG shapes placed at the bottom or corners to replicate business card. Image: Professional IT team overlapping the wave."
+    },
+    {
+      "name": "About",
+      "details": "Introduction to Nivara Ltd. Clean text layout. High-contrast headings. Image of professionals."
+    },
+    {
+      "name": "Services",
+      "details": "6 cards grid. (IT Consulting, Managed IT Support, Cloud Solutions, Cyber Security, Remote Assistance, Backup & Recovery). Clean lucide-react icons, minimal text."
+    },
+    {
+      "name": "Why Choose Us",
+      "details": "Stats or horizontal cards focusing on Reliability, Fast Response, Secure Systems."
+    },
+    {
+      "name": "Testimonials",
+      "details": "Grid or simple carousel of client reviews. Soft grey cards with quote icons."
+    },
+    {
+      "name": "Contact",
+      "details": "Modern contact form on one side, Contact details (Phone: 074 8050 6197, Email: nivaraltd.dpm@outlook.com) on the other. Clean inputs using Shadcn."
+    },
+    {
+      "name": "Footer",
+      "details": "Dark background (#1D3557). Red accents. Logo, links, copyright."
+    }
+  ],
+  "media_and_assets": {
+    "images": [
+      {
+        "category": "hero_or_about",
+        "url": "https://images.unsplash.com/photo-1757405939046-7658d7426026?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBJVCUyMGNvbnN1bHRpbmclMjB0ZWFtJTIwcHJvZmVzc2lvbmFsc3xlbnwwfHx8fDE3NzgyNzM3MDZ8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Three colleagues collaborating around a laptop in an office."
+      },
+      {
+        "category": "services_cyber_security",
+        "url": "https://images.unsplash.com/photo-1680992046615-065f58bcb4d8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwxfHxjeWJlciUyMHNlY3VyaXR5JTIwbW9kZXJuJTIwc2VydmVyJTIwcm9vbXxlbnwwfHx8fDE3NzgyNzM3MDZ8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Close up of a rack of computer equipment"
+      },
+      {
+        "category": "about_team",
+        "url": "https://images.unsplash.com/photo-1758518731468-98e90ffd7430?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBJVCUyMGNvbnN1bHRpbmclMjB0ZWFtJTIwcHJvZmVzc2lvbmFsc3xlbnwwfHx8fDE3NzgyNzM3MDZ8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Four professionals in business attire stand together."
+      },
+      {
+        "category": "testimonial_avatar_1",
+        "url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop",
+        "description": "Professional client portrait (fallback URL)"
+      },
+      {
+        "category": "testimonial_avatar_2",
+        "url": "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop",
+        "description": "Professional client portrait 2 (fallback URL)"
+      }
+    ],
+    "icons": "lucide-react"
+  },
+  "instructions_to_main_agent": [
+    "Use Tailwind CSS strictly. Implement smooth scrolling if possible (e.g., lenis).",
+    "Use SVG for the 'red wave/curve shapes' in the Hero background and section dividers to ensure crisp resolution. Use #D90429 for the wave fill. Create an organic, flowing ribbon effect at the bottom of the hero section.",
+    "Prioritize a clean white and light grey (#F5F5F5) background throughout the site, using dark navy (#1D3557) for headings to create an authoritative tone.",
+    "Apply 'data-testid' to all interactive elements for robust testing.",
+    "Ensure headings use Poppins (google fonts) and body text uses Inter (google fonts). Set up typography via Tailwind config or global CSS imports. Do not use generic fonts.",
+    "Do not build a complex backend; this is a pure UI/UX landing page.",
+    "Ensure all Shadcn UI components (if used for contact forms, etc.) are styled with the brand colors and soft border radii. Avoid default Vercel-like appearance."
+  ]
+}
