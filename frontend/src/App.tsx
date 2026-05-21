@@ -28,35 +28,30 @@ import {
   Users,
   Send,
   PhoneCall,
+  ExternalLink,
 } from 'lucide-react';
+
+/* -------------------------------------------------------------------------- */
+/*  Email Obfuscation Helper                                                  */
+/* -------------------------------------------------------------------------- */
+
+const EMAIL_USER = 'nivaraltd.dpm';
+const EMAIL_DOMAIN = 'outlook.com';
+const getEmail = () => `${EMAIL_USER}@${EMAIL_DOMAIN}`;
 
 /* -------------------------------------------------------------------------- */
 /*  Brand mark                                                                */
 /* -------------------------------------------------------------------------- */
 
 const Logo = ({ inverted = false, testId = 'logo-link' }: { inverted?: boolean; testId?: string }) => (
-  <a href="#home" data-testid={testId} className="flex items-center gap-2.5 group">
-    <span className="relative inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#D90429] shadow-red-glow group-hover:scale-105 transition-transform">
-      <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#FF1A3F] to-[#B30321]" />
-      <span className="relative font-display font-extrabold text-white text-xl italic tracking-tight">N</span>
-      <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-1 rounded-full bg-white/40 blur-[1px]" />
-    </span>
-    <span className="flex flex-col leading-none">
-      <span
-        className={`font-display font-bold text-[17px] tracking-tight ${
-          inverted ? 'text-white' : 'text-[#1D3557]'
-        }`}
-      >
-        Nivara<span className="text-[#D90429]">.</span>
-      </span>
-      <span
-        className={`text-[10px] uppercase tracking-[0.22em] font-semibold mt-0.5 ${
-          inverted ? 'text-white/50' : 'text-[#4B5563]/70'
-        }`}
-      >
-        Digital peace of mind
-      </span>
-    </span>
+  <a href="#home" data-testid={testId} className="inline-flex group">
+    <img
+      src="/logo.png"
+      alt="Nivara Ltd — Digital Peace of Mind"
+      className={`h-12 w-auto object-contain group-hover:scale-105 transition-transform ${
+        inverted ? 'brightness-0 invert' : ''
+      }`}
+    />
   </a>
 );
 
@@ -146,11 +141,11 @@ const Navbar = () => {
   }, []);
 
   const links = [
-    { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
     { name: 'Why Us', href: '#why' },
     { name: 'Reviews', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '#about' },
   ];
 
   return (
@@ -178,7 +173,15 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-5">
+          <a
+            href={`mailto:${getEmail()}`}
+            data-testid="nav-email"
+            className="flex items-center gap-2 text-[13px] font-semibold text-[#1D3557] hover:text-[#D90429] transition-colors"
+          >
+            <Mail size={15} className="text-[#D90429]" />
+            {getEmail()}
+          </a>
           <a
             href="tel:07480506197"
             data-testid="nav-phone"
@@ -186,14 +189,6 @@ const Navbar = () => {
           >
             <PhoneCall size={15} className="text-[#D90429]" />
             074 8050 6197
-          </a>
-          <a
-            href="#contact"
-            data-testid="nav-cta-book"
-            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#D90429] text-white text-[13px] font-semibold shadow-red-glow hover:bg-[#B30321] hover:-translate-y-0.5 transition-all"
-          >
-            Book Consultation
-            <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
           </a>
         </div>
 
@@ -307,14 +302,6 @@ const Hero = () => {
           </p>
 
           <div className="mt-9 flex flex-col sm:flex-row gap-3">
-            <a
-              href="#contact"
-              data-testid="hero-cta-book"
-              className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-[#D90429] text-white font-semibold shadow-red-glow hover:bg-[#B30321] hover:-translate-y-0.5 transition-all"
-            >
-              Book Consultation
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </a>
             <a
               href="#services"
               data-testid="hero-cta-support"
@@ -479,7 +466,7 @@ const About = () => {
               <Sparkles size={20} />
             </div>
             <div>
-              <div className="font-display font-bold text-2xl text-[#1D3557] leading-none">10+ yrs</div>
+              <div className="font-display font-bold text-2xl text-[#1D3557] leading-none">5+ yrs</div>
               <div className="text-xs text-[#4B5563] mt-1">helping UK businesses thrive</div>
             </div>
           </div>
@@ -557,44 +544,128 @@ const About = () => {
 
 const SERVICES = [
   {
-    icon: Lightbulb,
-    title: 'IT Consulting',
-    desc: 'Strategic technology guidance to align your systems with where your business is going next.',
-    bullets: ['Roadmaps & audits', 'Vendor selection', 'Digital transformation'],
-  },
-  {
-    icon: HeadphonesIcon,
-    title: 'Managed IT Support',
-    desc: 'Friendly, fast helpdesk and on-site engineers acting as your dedicated, outsourced IT department.',
-    bullets: ['24/7 helpdesk', 'On-site visits', 'Proactive monitoring'],
-  },
-  {
-    icon: Cloud,
-    title: 'Cloud Solutions',
-    desc: 'Migration, optimisation and management of Microsoft 365, Azure and modern cloud workloads.',
-    bullets: ['M365 & Azure', 'Cloud migration', 'Cost optimisation'],
-  },
-  {
     icon: ShieldCheck,
-    title: 'Cyber Security',
-    desc: 'Layered defences and ongoing vigilance to protect your data, your team and your reputation.',
-    bullets: ['Cyber Essentials', 'Endpoint protection', 'Phishing simulation'],
+    title: 'Kaspersky Authorized Reseller',
+    desc: 'Lowest price guaranteed on genuine Kaspersky antivirus, VPN, and security suites for home and business.',
+    bullets: [
+      'Inauguration pricing from £10.98',
+      'Authorized UK partner',
+      'Genuine product guarantee',
+    ],
+  },
+];
+
+interface KasperskyProduct {
+  id: string;
+  name: string;
+  retailPrice: string;
+  ourPrice: string;
+  devices: string;
+  saving: string;
+  link: string;
+  linkText: string;
+}
+
+const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
+  {
+    id: 'premium',
+    name: 'Kaspersky Premium',
+    retailPrice: '£20.99',
+    ourPrice: '£16.79',
+    devices: '1 Device',
+    saving: '20% Off',
+    link: 'https://www.kaspersky.co.uk/premium',
+    linkText: 'Kaspersky Premium Antivirus with unlimited VPN | Kaspersky',
   },
   {
-    icon: Server,
-    title: 'Remote Assistance',
-    desc: 'Secure remote support that fixes most issues in minutes — wherever your team is working from.',
-    bullets: ['Instant remote help', 'Software setup', 'User training'],
+    id: 'plus',
+    name: 'Kaspersky Plus',
+    retailPrice: '£19.99',
+    ourPrice: '£16.00',
+    devices: '1 Device',
+    saving: '20% Off',
+    link: 'https://www.kaspersky.co.uk/plus',
+    linkText: 'Kaspersky Plus Antivirus - Advanced Internet Security Software | Kaspersky',
   },
   {
-    icon: DatabaseBackup,
-    title: 'Backup & Recovery',
-    desc: 'Resilient backup, business continuity and disaster recovery plans you can actually rely on.',
-    bullets: ['Automated backups', 'DR planning', 'Ransomware recovery'],
+    id: 'standard',
+    name: 'Kaspersky Standard',
+    retailPrice: '£15.99',
+    ourPrice: '£12.80',
+    devices: '1 Device',
+    saving: '20% Off',
+    link: 'https://www.kaspersky.co.uk/standard',
+    linkText: 'Kaspersky Standard – Antivirus Software Special Offer | Kaspersky',
+  },
+  {
+    id: 'vpn',
+    name: 'Kaspersky VPN Secure Connection',
+    retailPrice: '£34.99',
+    ourPrice: '£18.47',
+    devices: '5 Devices',
+    saving: '47% Off',
+    link: 'https://www.kaspersky.co.uk/vpn-secure-connection',
+    linkText: 'Kaspersky VPN Secure Connection – Protect Your Online Privacy | Kaspersky',
+  },
+  {
+    id: 'safe-kids',
+    name: 'Kaspersky Safe Kids',
+    retailPrice: '£20.99',
+    ourPrice: '£12.32',
+    devices: '1 user',
+    saving: '41% Off',
+    link: 'https://www.kaspersky.co.uk/safe-kids',
+    linkText: 'Kaspersky Safe Kids | Parental Control Software | Kaspersky',
+  },
+  {
+    id: 'password-manager',
+    name: 'Kaspersky Password Manager',
+    retailPrice: '£15.99',
+    ourPrice: '£10.98',
+    devices: '1 user',
+    saving: '31% Off',
+    link: 'https://www.kaspersky.co.uk/password-manager',
+    linkText: 'Kaspersky Password Manager | Kaspersky',
+  },
+  {
+    id: 'small-office',
+    name: 'Kaspersky Small Office Security',
+    retailPrice: '£169.95',
+    ourPrice: '£100.12',
+    devices: '5 users',
+    saving: '41% Off',
+    link: 'https://www.kaspersky.co.uk/small-office-security',
+    linkText: 'Kaspersky Small Office Security - Business Antivirus Solution | Kaspersky',
   },
 ];
 
 const Services = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const closeAndScroll = () => {
+    setModalOpen(false);
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
+  };
+
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [modalOpen]);
+
+  const s = SERVICES[0];
+  const Icon = s.icon;
+
   return (
     <section
       id="services"
@@ -608,60 +679,218 @@ const Services = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mb-12">
           <div className="flex items-center gap-3 mb-4">
             <span className="h-px w-10 bg-[#D90429]" />
             <span className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#D90429]">
-              What we do
+              Partnerships & Products
             </span>
           </div>
-          <h2 className="font-display font-bold text-[#1D3557] text-4xl sm:text-5xl tracking-tight leading-[1.08]">
-            A complete IT department, without the overhead.
-          </h2>
           <p className="mt-5 text-[#4B5563] text-lg leading-relaxed">
-            Whether you need strategic advice, day-to-day support or a complete cloud migration —
-            we tailor every engagement to your team, your budget and your ambitions.
+            Nivara Ltd is a certified partner of leading digital security solutions. We deliver top-tier
+            licensing options tailored for both household protection and corporate infrastructure.
           </p>
         </div>
 
-        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SERVICES.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <motion.div
-                key={s.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
-                whileHover={{ y: -6 }}
-                data-testid={`service-card-${s.title.toLowerCase().replace(/\s+/g, '-').replace('&', 'and')}`}
-                className="group relative bg-white rounded-3xl p-8 border border-[#E5E7EB] hover:border-[#D90429]/30 hover:shadow-soft-lg transition-all overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-28 h-28 bg-[#D90429]/0 group-hover:bg-[#D90429]/5 transition-colors rounded-bl-[100px]" />
-                <div className="relative">
-                  <div className="w-12 h-12 rounded-xl bg-[#FFE4E7] text-[#D90429] flex items-center justify-center mb-6 group-hover:bg-[#D90429] group-hover:text-white transition-all">
-                    <Icon size={22} />
-                  </div>
-                  <h3 className="font-display font-semibold text-xl text-[#1D3557] tracking-tight">
-                    {s.title}
-                  </h3>
-                  <p className="mt-3 text-[#4B5563] text-[15px] leading-relaxed">{s.desc}</p>
+        {/* Featured Kaspersky Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          data-testid="service-card-kaspersky-reseller"
+          className="relative max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-10 border border-[#E5E7EB] hover:border-[#D90429]/30 hover:shadow-soft-lg transition-all overflow-hidden group cursor-pointer"
+          onClick={() => setModalOpen(true)}
+        >
+          {/* Decorative Kaspersky-inspired green gradient accent */}
+          <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-teal-500/10 to-[#D90429]/5 rounded-bl-[120px] group-hover:scale-110 transition-transform" />
+          
+          <div className="relative grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-500/20 text-teal-700 text-xs font-semibold uppercase tracking-wider mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse" />
+                Authorized Reseller
+              </div>
+              
+              <h3 className="font-display font-bold text-2xl sm:text-3xl text-[#1D3557] tracking-tight">
+                {s.title}
+              </h3>
+              
+              <p className="mt-4 text-[#4B5563] text-[16px] leading-relaxed">
+                {s.desc} Access special inaugurational rates, multi-device options, and guaranteed lowest prices on licensing renewals.
+              </p>
 
-                  <ul className="mt-6 space-y-2">
-                    {s.bullets.map((b) => (
-                      <li key={b} className="flex items-center gap-2 text-sm text-[#1D3557]/80">
-                        <CheckCircle2 size={15} className="text-[#D90429]" />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+              <ul className="mt-6 grid sm:grid-cols-3 gap-3">
+                {s.bullets.map((b) => (
+                  <li key={b} className="flex items-center gap-2 text-sm text-[#1D3557]/80 font-medium">
+                    <CheckCircle2 size={16} className="text-teal-600" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="md:col-span-4 flex flex-col items-center justify-center border-t md:border-t-0 md:border-l border-[#E5E7EB] pt-6 md:pt-0 md:pl-8">
+              <div className="w-14 h-14 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mb-4 group-hover:bg-[#D90429] group-hover:text-white transition-all shadow-sm">
+                <Icon size={28} />
+              </div>
+              <button 
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#D90429] text-white font-semibold text-sm shadow-red-glow hover:bg-[#B30321] transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setModalOpen(true);
+                }}
+              >
+                View Prices & Compare
+                <ArrowRight size={15} />
+              </button>
+            </div>
+          </div>
+        </motion.div>
       </div>
+
+      {/* Detail Modal */}
+      <AnimatePresence>
+        {modalOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-[#1D3557]/60 backdrop-blur-sm"
+              onClick={() => setModalOpen(false)}
+            />
+
+            {/* Modal Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+              className="relative bg-white rounded-3xl shadow-soft-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#E5E7EB] flex flex-col z-10"
+            >
+              {/* Sticky Modal Header */}
+              <div className="sticky top-0 bg-white/95 backdrop-blur z-20 px-6 sm:px-10 py-5 border-b border-[#E5E7EB] flex items-center justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-2.5 h-2.5 rounded-full bg-teal-500" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-teal-700">Official Partner Offer</span>
+                  </div>
+                  <h3 className="font-display font-bold text-2xl text-[#1D3557] tracking-tight">
+                    Kaspersky Security Solutions
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setModalOpen(false)}
+                  className="w-10 h-10 rounded-full border border-[#E5E7EB] bg-white flex items-center justify-center text-[#1D3557] hover:text-[#D90429] transition-colors"
+                  aria-label="Close modal"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Modal Scroll Content */}
+              <div className="px-6 sm:px-10 py-6 space-y-8 flex-1">
+                {/* Intro */}
+                <div className="bg-teal-50/55 border border-teal-500/10 rounded-2xl p-5 sm:p-6 text-sm text-[#4B5563] leading-relaxed">
+                  <p className="font-semibold text-[#1D3557] mb-2 text-base">We are an Authorized UK reseller of Kaspersky security products.</p>
+                  <p className="mb-4">
+                    Providing top-tier security licenses for home users and small/medium businesses. Explore our business inauguration rates below. Click on any product link to compare features or find details on the official Kaspersky site.
+                  </p>
+                  <div className="text-[12px] font-medium text-teal-800 bg-teal-50 border border-teal-500/15 rounded-lg px-3 py-2 inline-block">
+                    Lowest Price Guaranteed — We beat standard pricing & guarantee the lowest rates on renewals.
+                  </div>
+                </div>
+
+                {/* Products Grid */}
+                <div className="space-y-4">
+                  <h4 className="font-display font-bold text-lg text-[#1D3557] border-b border-[#E5E7EB] pb-2">
+                    Inauguration Price List
+                  </h4>
+                  
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {KASPERSKY_PRODUCTS.map((prod) => (
+                      <div 
+                        key={prod.id} 
+                        className="bg-white border border-[#E5E7EB] rounded-2xl p-5 hover:border-teal-500/20 hover:shadow-soft transition-all flex flex-col justify-between"
+                      >
+                        <div>
+                          <div className="flex justify-between items-start gap-2 mb-2">
+                            <span className="font-display font-bold text-base text-[#1D3557]">
+                              {prod.name}
+                            </span>
+                            <span className="text-[11px] font-semibold text-teal-700 bg-teal-50 border border-teal-500/20 rounded-md px-2 py-0.5 whitespace-nowrap">
+                              {prod.saving}
+                            </span>
+                          </div>
+                          <span className="text-xs font-medium text-[#4B5563] bg-[#F5F5F5] rounded-full px-2.5 py-0.5 inline-block mb-4">
+                            {prod.devices}
+                          </span>
+                        </div>
+
+                        <div className="mt-4 pt-4 border-t border-[#F5F5F5]">
+                          <div className="flex items-baseline gap-2 mb-4">
+                            <span className="text-xs text-[#4B5563]/60 line-through font-medium">
+                              Retail {prod.retailPrice}
+                            </span>
+                            <span className="text-lg font-bold text-[#D90429]">
+                              Our Price {prod.ourPrice} *
+                            </span>
+                          </div>
+                          
+                          <a 
+                            href={prod.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-teal-600 hover:text-teal-800 hover:underline transition-colors leading-tight"
+                          >
+                            <ExternalLink size={13} />
+                            Official Specs & Compare
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer notes */}
+                <div className="border-t border-[#E5E7EB] pt-6 space-y-4 text-xs text-[#4B5563] leading-relaxed">
+                  <p>
+                    We provide these products for all requirements, ranging from individual home installations (1 to 5 devices) to small and medium enterprises (5 to 50 employees).
+                  </p>
+                  <p className="bg-[#F5F5F5] p-4 rounded-xl border border-[#E5E7EB] italic">
+                    * Our prices may change from time to time, so please check with us for the latest offers. But even with that, the lowest prices are guaranteed — you won’t find a better deal anywhere else for genuine products. And if you are happy for a year, I could renew/offer the product at the same price for another year.
+                  </p>
+                </div>
+              </div>
+
+              {/* Sticky Modal Footer */}
+              <div className="sticky bottom-0 bg-white/95 backdrop-blur z-20 px-6 sm:px-10 py-5 border-t border-[#E5E7EB] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span className="text-sm font-semibold text-[#1D3557]">
+                  Ready to secure your devices?
+                </span>
+                
+                <div className="flex gap-3 w-full sm:w-auto">
+                  <button
+                    onClick={() => setModalOpen(false)}
+                    className="flex-1 sm:flex-none px-6 py-3 rounded-full border border-[#E5E7EB] font-semibold text-sm text-[#1D3557] hover:bg-[#F5F5F5] transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={closeAndScroll}
+                    className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#D90429] text-white font-semibold text-sm shadow-red-glow hover:bg-[#B30321] transition-colors"
+                  >
+                    Contact Us to Grab Deal
+                    <ArrowRight size={15} />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
@@ -910,7 +1139,7 @@ const Contact = () => {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\n${form.message}`,
     );
-    window.location.href = `mailto:nivaraltd.dpm@outlook.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${getEmail()}?subject=${subject}&body=${body}`;
     setStatus('sent');
     setTimeout(() => setStatus('idle'), 4000);
   };
@@ -962,7 +1191,7 @@ const Contact = () => {
             </a>
 
             <a
-              href="mailto:nivaraltd.dpm@outlook.com"
+              href={`mailto:${getEmail()}`}
               data-testid="contact-email"
               className="flex items-center gap-4 p-5 rounded-2xl bg-[#F5F5F5] hover:bg-white hover:shadow-soft border border-transparent hover:border-[#E5E7EB] transition-all group"
             >
@@ -974,7 +1203,7 @@ const Contact = () => {
                   Email us
                 </div>
                 <div className="font-display font-semibold text-[#1D3557] text-lg truncate">
-                  nivaraltd.dpm@outlook.com
+                  {getEmail()}
                 </div>
               </div>
             </a>
@@ -1158,7 +1387,7 @@ const Footer = () => {
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid lg:grid-cols-12 gap-12 pb-12 border-b border-white/10">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-6">
             <Logo inverted testId="footer-logo-link" />
             <p className="mt-5 text-white/65 max-w-sm leading-relaxed">
               UK-based IT consultancy delivering calm, dependable technology for ambitious
@@ -1173,15 +1402,15 @@ const Footer = () => {
                 <Phone size={15} className="text-[#D90429]" /> 074 8050 6197
               </a>
               <a
-                href="mailto:nivaraltd.dpm@outlook.com"
+                href={`mailto:${getEmail()}`}
                 className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors"
               >
-                <Mail size={15} className="text-[#D90429]" /> nivaraltd.dpm@outlook.com
+                <Mail size={15} className="text-[#D90429]" /> {getEmail()}
               </a>
             </div>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <div className="text-xs uppercase tracking-[0.28em] font-semibold text-[#D90429] mb-5">
               Services
             </div>
@@ -1193,29 +1422,6 @@ const Footer = () => {
                   </a>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          <div className="lg:col-span-2">
-            <div className="text-xs uppercase tracking-[0.28em] font-semibold text-[#D90429] mb-5">
-              Company
-            </div>
-            <ul className="space-y-3 text-white/70 text-sm">
-              <li><a href="#about" className="hover:text-white">About</a></li>
-              <li><a href="#why" className="hover:text-white">Why Us</a></li>
-              <li><a href="#testimonials" className="hover:text-white">Reviews</a></li>
-              <li><a href="#contact" className="hover:text-white">Contact</a></li>
-            </ul>
-          </div>
-
-          <div className="lg:col-span-2">
-            <div className="text-xs uppercase tracking-[0.28em] font-semibold text-[#D90429] mb-5">
-              Legal
-            </div>
-            <ul className="space-y-3 text-white/70 text-sm">
-              <li><a href="#" className="hover:text-white">Privacy</a></li>
-              <li><a href="#" className="hover:text-white">Terms</a></li>
-              <li><a href="#" className="hover:text-white">Cookies</a></li>
             </ul>
           </div>
         </div>
