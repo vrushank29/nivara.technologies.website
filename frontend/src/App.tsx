@@ -14,18 +14,7 @@ import {
   Mail,
   MapPin,
   ShieldCheck,
-  Cloud,
-  HeadphonesIcon,
-  Server,
-  Lightbulb,
-  DatabaseBackup,
-  Clock,
-  Lock,
-  Zap,
-  Sparkles,
-  Quote,
   CheckCircle2,
-  Users,
   Send,
   PhoneCall,
   ExternalLink,
@@ -35,8 +24,8 @@ import {
 /*  Email Obfuscation Helper                                                  */
 /* -------------------------------------------------------------------------- */
 
-const EMAIL_USER = 'nivaraltd.dpm';
-const EMAIL_DOMAIN = 'outlook.com';
+const EMAIL_USER = 'hello';
+const EMAIL_DOMAIN = 'nivaraltd.com';
 const getEmail = () => `${EMAIL_USER}@${EMAIL_DOMAIN}`;
 
 /* -------------------------------------------------------------------------- */
@@ -44,14 +33,23 @@ const getEmail = () => `${EMAIL_USER}@${EMAIL_DOMAIN}`;
 /* -------------------------------------------------------------------------- */
 
 const Logo = ({ inverted = false, testId = 'logo-link' }: { inverted?: boolean; testId?: string }) => (
-  <a href="#home" data-testid={testId} className="inline-flex group">
+  <a href="#services" data-testid={testId} className="inline-flex items-center gap-2.5 group">
+    {/* Clean brain icon — no text in this image */}
     <img
-      src="/logo.png"
-      alt="Nivara Ltd — Digital Peace of Mind"
-      className={`h-12 w-auto object-contain group-hover:scale-105 transition-transform ${
-        inverted ? 'brightness-0 invert' : ''
-      }`}
+      src="/logo%20png.png"
+      alt="Nivara brain icon"
+      className={`h-14 w-auto object-contain flex-shrink-0 group-hover:scale-105 transition-transform ${inverted ? 'brightness-0 invert' : ''
+        }`}
     />
+    {/* Brand text */}
+    <div className="leading-none">
+      <div className={`font-display font-bold text-[18px] leading-tight ${inverted ? 'text-white' : 'text-[#1D3557]'}`}>
+        Nivara Ltd<span className="text-[#D90429]">.</span>
+      </div>
+      <div className={`text-[9px] font-semibold tracking-[0.22em] uppercase mt-0.5 ${inverted ? 'text-white/60' : 'text-[#4B5563]'}`}>
+        Digital Peace of Mind
+      </div>
+    </div>
   </a>
 );
 
@@ -142,20 +140,16 @@ const Navbar = () => {
 
   const links = [
     { name: 'Services', href: '#services' },
-    { name: 'Why Us', href: '#why' },
-    { name: 'Reviews', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
-    { name: 'About', href: '#about' },
   ];
 
   return (
     <nav
       data-testid="primary-nav"
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled
           ? 'bg-white/80 backdrop-blur-xl border-b border-[#E5E7EB] py-3'
           : 'bg-transparent py-5'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
         <Logo testId="nav-logo-link" />
@@ -239,304 +233,6 @@ const Navbar = () => {
   );
 };
 
-/* -------------------------------------------------------------------------- */
-/*  Hero                                                                      */
-/* -------------------------------------------------------------------------- */
-
-const Hero = () => {
-  return (
-    <section
-      id="home"
-      data-testid="hero-section"
-      className="relative min-h-[100vh] flex items-center pt-32 pb-32 overflow-hidden bg-white"
-    >
-      {/* Subtle dot grid */}
-      <div className="absolute inset-0 bg-dot-grid-light opacity-70 pointer-events-none" />
-      <RedWaveBackdrop />
-
-      {/* Floating soft red blobs */}
-      <div className="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-[#D90429]/10 blur-[100px] pointer-events-none" />
-      <div className="absolute -bottom-32 -left-20 w-[380px] h-[380px] rounded-full bg-[#1D3557]/10 blur-[100px] pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 grid lg:grid-cols-12 gap-12 items-center w-full">
-        {/* Copy */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="lg:col-span-7"
-        >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFE4E7] border border-[#D90429]/15 text-[#D90429] text-[12px] font-semibold tracking-wide mb-7">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-[#D90429] opacity-60 animate-ping" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D90429]" />
-            </span>
-            UK based · Trusted IT consultancy
-          </div>
-
-          <h1 className="font-display font-bold text-[#1D3557] tracking-tight text-balance text-5xl sm:text-6xl lg:text-[78px] leading-[1.02]">
-            Digital{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10">Peace</span>
-              <svg
-                viewBox="0 0 220 24"
-                className="absolute left-0 right-0 -bottom-2 w-full"
-                aria-hidden
-              >
-                <path
-                  d="M2 18 C 60 4, 140 28, 218 10"
-                  stroke="#D90429"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                  fill="none"
-                />
-              </svg>
-            </span>{' '}
-            <br className="hidden sm:block" />
-            of Mind.
-          </h1>
-
-          <p className="mt-7 text-lg text-[#4B5563] max-w-xl leading-relaxed">
-            Nivara Ltd delivers calm, dependable IT consulting and managed support for ambitious
-            businesses — so you can stop worrying about technology and get back to growth.
-          </p>
-
-          <div className="mt-9 flex flex-col sm:flex-row gap-3">
-            <a
-              href="#services"
-              data-testid="hero-cta-support"
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white text-[#1D3557] font-semibold border border-[#E5E7EB] hover:border-[#1D3557] hover:bg-[#F5F5F5] transition-all"
-            >
-              <HeadphonesIcon size={18} className="text-[#D90429]" />
-              Get IT Support
-            </a>
-          </div>
-
-          {/* Trust strip */}
-          <div className="mt-12 flex flex-wrap gap-x-8 gap-y-4 text-sm text-[#4B5563]">
-            {[
-              { icon: <ShieldCheck size={16} className="text-[#D90429]" />, label: 'GDPR & Cyber Essentials aligned' },
-              { icon: <Clock size={16} className="text-[#D90429]" />, label: 'Avg. 15 min response' },
-              { icon: <Users size={16} className="text-[#D90429]" />, label: '120+ businesses supported' },
-            ].map((t) => (
-              <div key={t.label} className="flex items-center gap-2 font-medium">
-                {t.icon}
-                {t.label}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Visual */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: 'easeOut', delay: 0.15 }}
-          className="lg:col-span-5 relative"
-        >
-          <div className="relative rounded-[28px] overflow-hidden shadow-soft-lg border border-[#E5E7EB] bg-white">
-            <img
-              src="https://images.unsplash.com/photo-1757405939046-7658d7426026?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBJVCUyMGNvbnN1bHRpbmclMjB0ZWFtJTIwcHJvZmVzc2lvbmFsc3xlbnwwfHx8fDE3NzgyNzM3MDZ8MA&ixlib=rb-4.1.0&q=85"
-              alt="Nivara IT consultants collaborating"
-              className="w-full aspect-[4/5] object-cover"
-            />
-            {/* Floating status card */}
-            <div className="absolute top-6 left-6 px-4 py-3 bg-white/95 backdrop-blur rounded-2xl shadow-soft flex items-center gap-3">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-60 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-              </span>
-              <div className="leading-tight">
-                <div className="text-[11px] uppercase tracking-widest font-semibold text-[#4B5563]">
-                  Helpdesk
-                </div>
-                <div className="text-sm font-bold text-[#1D3557]">Online · 24 / 7</div>
-              </div>
-            </div>
-
-            {/* Floating support card */}
-            <div className="absolute bottom-6 right-6 max-w-[230px] px-4 py-4 bg-white/95 backdrop-blur rounded-2xl shadow-soft border border-[#E5E7EB]">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 rounded-lg bg-[#FFE4E7] text-[#D90429] flex items-center justify-center">
-                  <Zap size={16} />
-                </div>
-                <div className="text-sm font-bold text-[#1D3557]">Issue resolved</div>
-              </div>
-              <p className="text-xs text-[#4B5563]">
-                "Network back online in 12 minutes. Brilliant team."
-              </p>
-            </div>
-          </div>
-
-          {/* Floating decorative ribbon under image */}
-          <div className="absolute -bottom-8 -left-6 w-[60%] h-20 opacity-95">
-            <RedRibbon className="w-full h-full" />
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Bottom edge soft red ribbon */}
-      <div className="absolute bottom-0 inset-x-0 h-24 pointer-events-none">
-        <svg
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          className="w-full h-full"
-          aria-hidden
-        >
-          <path
-            d="M0 80 C 240 20, 520 130, 800 70 C 1060 18, 1240 100, 1440 50 L1440 120 L0 120 Z"
-            fill="#D90429"
-            opacity="0.08"
-          />
-          <path
-            d="M0 95 C 280 50, 560 120, 840 80 C 1120 42, 1300 110, 1440 80 L1440 120 L0 120 Z"
-            fill="#D90429"
-            opacity="0.18"
-          />
-        </svg>
-      </div>
-    </section>
-  );
-};
-
-/* -------------------------------------------------------------------------- */
-/*  Logo strip                                                                */
-/* -------------------------------------------------------------------------- */
-
-const LogoStrip = () => {
-  const items = [
-    'Halcyon Health',
-    'Northwind & Co',
-    'Brookline Legal',
-    'Verdant Retail',
-    'Stratford Studios',
-    'Cobalt Logistics',
-    'Foundry Architects',
-    'Meridian Finance',
-  ];
-  return (
-    <section data-testid="logo-strip" className="py-12 border-y border-[#E5E7EB] bg-white">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.28em] text-[#4B5563] mb-8">
-          Trusted by SMEs and growing teams across the UK
-        </p>
-        <div className="relative overflow-hidden scrollbar-hide">
-          <div className="flex gap-14 animate-marquee whitespace-nowrap">
-            {[...items, ...items].map((it, i) => (
-              <span
-                key={`${it}-${i}`}
-                className="font-display font-semibold text-2xl text-[#1D3557]/45 tracking-tight"
-              >
-                {it}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-/* -------------------------------------------------------------------------- */
-/*  About                                                                     */
-/* -------------------------------------------------------------------------- */
-
-const About = () => {
-  return (
-    <section id="about" data-testid="about-section" className="relative py-28 bg-white overflow-hidden">
-      <div className="absolute right-0 top-0 w-[40%] h-[40%] bg-dot-grid opacity-50 pointer-events-none" />
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 grid lg:grid-cols-12 gap-14 items-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, x: -24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="lg:col-span-5 relative"
-        >
-          <div className="relative rounded-[28px] overflow-hidden shadow-soft-lg">
-            <img
-              src="https://images.unsplash.com/photo-1758518731468-98e90ffd7430?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBJVCUyMGNvbnN1bHRpbmclMjB0ZWFtJTIwcHJvZmVzc2lvbmFsc3xlbnwwfHx8fDE3NzgyNzM3MDZ8MA&ixlib=rb-4.1.0&q=85"
-              alt="Nivara team"
-              className="w-full aspect-[4/5] object-cover"
-            />
-          </div>
-          {/* Floating stats card */}
-          <div className="absolute -bottom-8 -right-4 sm:-right-10 px-6 py-5 bg-white rounded-2xl shadow-soft-lg border border-[#E5E7EB] flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#1D3557] text-white flex items-center justify-center">
-              <Sparkles size={20} />
-            </div>
-            <div>
-              <div className="font-display font-bold text-2xl text-[#1D3557] leading-none">5+ yrs</div>
-              <div className="text-xs text-[#4B5563] mt-1">helping UK businesses thrive</div>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="lg:col-span-7"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <span className="h-px w-10 bg-[#D90429]" />
-            <span className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#D90429]">
-              About Nivara
-            </span>
-          </div>
-          <h2 className="font-display font-bold text-[#1D3557] text-4xl sm:text-5xl tracking-tight leading-[1.08]">
-            Calm, considered IT — looked after by a team you can actually call.
-          </h2>
-          <p className="mt-6 text-[#4B5563] text-lg leading-relaxed">
-            Nivara Ltd is a UK-based IT consultancy built around one idea: technology should give
-            your business confidence, not anxiety. We pair friendly, on-the-ground support with
-            modern cloud and security expertise — so your systems just work, day after day.
-          </p>
-
-          <div className="mt-8 grid sm:grid-cols-2 gap-4">
-            {[
-              { icon: <ShieldCheck className="text-[#D90429]" size={20} />, title: 'Trustworthy', desc: 'Plain-English advice. No jargon, no surprise invoices.' },
-              { icon: <Zap className="text-[#D90429]" size={20} />, title: 'Responsive', desc: 'Real humans answer the phone — quickly.' },
-              { icon: <Lock className="text-[#D90429]" size={20} />, title: 'Secure', desc: 'Modern cyber hygiene baked into every engagement.' },
-              { icon: <Users className="text-[#D90429]" size={20} />, title: 'Personal', desc: 'A dedicated engineer who learns your business.' },
-            ].map((b) => (
-              <div
-                key={b.title}
-                data-testid={`about-pillar-${b.title.toLowerCase()}`}
-                className="p-5 rounded-2xl bg-[#F5F5F5] hover:bg-white hover:shadow-soft transition-all border border-transparent hover:border-[#E5E7EB]"
-              >
-                <div className="w-10 h-10 rounded-lg bg-white shadow-soft flex items-center justify-center mb-3">
-                  {b.icon}
-                </div>
-                <div className="font-display font-semibold text-[#1D3557] text-base">{b.title}</div>
-                <p className="text-sm text-[#4B5563] mt-1 leading-relaxed">{b.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href="#services"
-              data-testid="about-cta-services"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1D3557] text-white text-sm font-semibold hover:bg-[#0F1B2D] transition-all"
-            >
-              Explore our services
-              <ArrowRight size={16} />
-            </a>
-            <a
-              href="#contact"
-              data-testid="about-cta-talk"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#1D3557] text-sm font-semibold border border-[#E5E7EB] hover:border-[#D90429] hover:text-[#D90429] transition-all"
-            >
-              Talk to a consultant
-            </a>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
 
 /* -------------------------------------------------------------------------- */
 /*  Services                                                                  */
@@ -670,13 +366,13 @@ const Services = () => {
     <section
       id="services"
       data-testid="services-section"
-      className="relative py-28 bg-[#F5F5F5] overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center pt-36 pb-28 bg-white overflow-hidden"
     >
       <div className="absolute inset-0 bg-dot-grid-light opacity-60 pointer-events-none" />
-      {/* Top ribbon divider */}
-      <div className="absolute -top-1 inset-x-0 h-16 rotate-180 pointer-events-none">
-        <RedRibbon className="w-full h-full opacity-60" />
-      </div>
+      <RedWaveBackdrop />
+      {/* Floating blobs */}
+      <div className="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-[#D90429]/8 blur-[100px] pointer-events-none" />
+      <div className="absolute -bottom-32 -left-20 w-[380px] h-[380px] rounded-full bg-[#1D3557]/8 blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
         <div className="max-w-3xl mb-12">
@@ -704,18 +400,18 @@ const Services = () => {
         >
           {/* Decorative Kaspersky-inspired green gradient accent */}
           <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-teal-500/10 to-[#D90429]/5 rounded-bl-[120px] group-hover:scale-110 transition-transform" />
-          
+
           <div className="relative grid md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-500/20 text-teal-700 text-xs font-semibold uppercase tracking-wider mb-5">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-pulse" />
                 Authorized Reseller
               </div>
-              
+
               <h3 className="font-display font-bold text-2xl sm:text-3xl text-[#1D3557] tracking-tight">
                 {s.title}
               </h3>
-              
+
               <p className="mt-4 text-[#4B5563] text-[16px] leading-relaxed">
                 {s.desc} Access special inaugurational rates, multi-device options, and guaranteed lowest prices on licensing renewals.
               </p>
@@ -734,7 +430,7 @@ const Services = () => {
               <div className="w-14 h-14 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mb-4 group-hover:bg-[#D90429] group-hover:text-white transition-all shadow-sm">
                 <Icon size={28} />
               </div>
-              <button 
+              <button
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#D90429] text-white font-semibold text-sm shadow-red-glow hover:bg-[#B30321] transition-colors"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -799,7 +495,7 @@ const Services = () => {
                     Providing top-tier security licenses for home users and small/medium businesses. Explore our business inauguration rates below. Click on any product link to compare features or find details on the official Kaspersky site.
                   </p>
                   <div className="text-[12px] font-medium text-teal-800 bg-teal-50 border border-teal-500/15 rounded-lg px-3 py-2 inline-block">
-                    Lowest Price Guaranteed — We beat standard pricing & guarantee the lowest rates on renewals.
+                    Lowest Price Guaranteed; We beat standard pricing & guarantee the lowest rates on renewals.
                   </div>
                 </div>
 
@@ -808,11 +504,11 @@ const Services = () => {
                   <h4 className="font-display font-bold text-lg text-[#1D3557] border-b border-[#E5E7EB] pb-2">
                     Inauguration Price List
                   </h4>
-                  
+
                   <div className="grid gap-4 sm:grid-cols-2">
                     {KASPERSKY_PRODUCTS.map((prod) => (
-                      <div 
-                        key={prod.id} 
+                      <div
+                        key={prod.id}
                         className="bg-white border border-[#E5E7EB] rounded-2xl p-5 hover:border-teal-500/20 hover:shadow-soft transition-all flex flex-col justify-between"
                       >
                         <div>
@@ -838,8 +534,8 @@ const Services = () => {
                               Our Price {prod.ourPrice} *
                             </span>
                           </div>
-                          
-                          <a 
+
+                          <a
                             href={prod.link}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -860,7 +556,7 @@ const Services = () => {
                     We provide these products for all requirements, ranging from individual home installations (1 to 5 devices) to small and medium enterprises (5 to 50 employees).
                   </p>
                   <p className="bg-[#F5F5F5] p-4 rounded-xl border border-[#E5E7EB] italic">
-                    * Our prices may change from time to time, so please check with us for the latest offers. But even with that, the lowest prices are guaranteed — you won’t find a better deal anywhere else for genuine products. And if you are happy for a year, I could renew/offer the product at the same price for another year.
+                    * Our prices may change from time to time, so please check with us for the latest offers. But even with that, the lowest prices are guaranteed. You won’t find a better deal anywhere else for genuine products. And if you are happy for a year, I could renew/offer the product at the same price for another year.
                   </p>
                 </div>
               </div>
@@ -870,7 +566,7 @@ const Services = () => {
                 <span className="text-sm font-semibold text-[#1D3557]">
                   Ready to secure your devices?
                 </span>
-                
+
                 <div className="flex gap-3 w-full sm:w-auto">
                   <button
                     onClick={() => setModalOpen(false)}
@@ -896,254 +592,10 @@ const Services = () => {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  Why Choose Us                                                             */
-/* -------------------------------------------------------------------------- */
-
-const WHY = [
-  {
-    icon: Clock,
-    stat: '15 min',
-    label: 'Average response time',
-    desc: 'Real engineers, real fast. No call-centre handoffs, no scripted run-around.',
-  },
-  {
-    icon: Lock,
-    stat: '99.9%',
-    label: 'Uptime across managed clients',
-    desc: 'Proactive monitoring catches issues before they ever interrupt your team.',
-  },
-  {
-    icon: Sparkles,
-    stat: '4.9 / 5',
-    label: 'Average client satisfaction',
-    desc: 'Friendly, plain-English support consistently rated outstanding.',
-  },
-  {
-    icon: ShieldCheck,
-    stat: '0',
-    label: 'Successful breaches',
-    desc: 'Hardened, layered defences across every endpoint, account and inbox we manage.',
-  },
-];
-
-const WhyUs = () => {
-  return (
-    <section
-      id="why"
-      data-testid="why-section"
-      className="relative py-28 bg-white overflow-hidden"
-    >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 items-end mb-14">
-          <div className="lg:col-span-7">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-10 bg-[#D90429]" />
-              <span className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#D90429]">
-                Why Nivara
-              </span>
-            </div>
-            <h2 className="font-display font-bold text-[#1D3557] text-4xl sm:text-5xl tracking-tight leading-[1.08]">
-              Reliable. Responsive. <span className="text-[#D90429]">Refreshingly human.</span>
-            </h2>
-          </div>
-          <p className="lg:col-span-5 text-[#4B5563] text-lg leading-relaxed">
-            We're not the biggest IT firm — and that's the point. You get senior engineers, direct
-            relationships and a service that actually feels personal.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {WHY.map((w, i) => {
-            const Icon = w.icon;
-            return (
-              <motion.div
-                key={w.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                data-testid={`why-card-${i}`}
-                className="relative p-7 rounded-3xl bg-[#F5F5F5] hover:bg-white hover:shadow-soft-lg border border-transparent hover:border-[#E5E7EB] transition-all overflow-hidden group"
-              >
-                <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-[#D90429]/5 group-hover:bg-[#D90429]/10 transition-colors" />
-                <div className="relative">
-                  <div className="w-11 h-11 rounded-xl bg-white shadow-soft flex items-center justify-center mb-6">
-                    <Icon size={20} className="text-[#D90429]" />
-                  </div>
-                  <div className="font-display font-bold text-4xl text-[#1D3557] tracking-tight">
-                    {w.stat}
-                  </div>
-                  <div className="mt-1 text-sm font-semibold text-[#1D3557]/80">{w.label}</div>
-                  <p className="mt-3 text-sm text-[#4B5563] leading-relaxed">{w.desc}</p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Process strip */}
-        <div className="mt-20 p-10 sm:p-14 rounded-[32px] bg-[#1D3557] text-white relative overflow-hidden">
-          <div className="absolute -bottom-1 inset-x-0 h-24 opacity-40">
-            <RedRibbon className="w-full h-full" />
-          </div>
-          <div className="absolute top-0 right-0 w-72 h-72 bg-[#D90429]/15 blur-[100px] rounded-full" />
-
-          <div className="relative grid lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-5">
-              <div className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#D90429] mb-3">
-                How we work
-              </div>
-              <h3 className="font-display font-bold text-3xl sm:text-4xl tracking-tight leading-tight">
-                A simple, structured way to bring calm to your IT.
-              </h3>
-            </div>
-            <div className="lg:col-span-7 grid sm:grid-cols-3 gap-5">
-              {[
-                { n: '01', t: 'Discover', d: 'Free audit of your current setup, risks and goals.' },
-                { n: '02', t: 'Design', d: 'A clear, costed roadmap tailored to your business.' },
-                { n: '03', t: 'Deliver', d: 'Smooth onboarding and ongoing care — measured monthly.' },
-              ].map((p) => (
-                <div
-                  key={p.n}
-                  className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur"
-                >
-                  <div className="text-[#D90429] font-display font-bold text-lg">{p.n}</div>
-                  <div className="font-display font-semibold text-lg mt-1">{p.t}</div>
-                  <p className="text-white/65 text-sm mt-2 leading-relaxed">{p.d}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-/* -------------------------------------------------------------------------- */
-/*  Testimonials                                                              */
-/* -------------------------------------------------------------------------- */
-
-const TESTIMONIALS = [
-  {
-    quote:
-      'Nivara took the chaos out of our IT. The response is always within minutes and they explain things in language our team actually understands.',
-    name: 'Priya Sharma',
-    role: 'Operations Director, Halcyon Health',
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop',
-  },
-  {
-    quote:
-      'They migrated us to Microsoft 365 with zero downtime over a weekend. Genuinely the smoothest IT project we have ever run.',
-    name: 'James Whitcombe',
-    role: 'Managing Partner, Brookline Legal',
-    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop',
-  },
-  {
-    quote:
-      'Calm, knowledgeable, and quietly excellent. After two bad providers, working with Nivara has felt like a breath of fresh air.',
-    name: 'Amelia Carter',
-    role: 'Founder, Verdant Retail',
-    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop',
-  },
-];
-
-const Testimonials = () => {
-  return (
-    <section
-      id="testimonials"
-      data-testid="testimonials-section"
-      className="relative py-28 bg-[#F5F5F5] overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-dot-grid-light opacity-50 pointer-events-none" />
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        <div className="max-w-3xl mb-14">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="h-px w-10 bg-[#D90429]" />
-            <span className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#D90429]">
-              Client Stories
-            </span>
-          </div>
-          <h2 className="font-display font-bold text-[#1D3557] text-4xl sm:text-5xl tracking-tight leading-[1.08]">
-            What people say after switching to Nivara.
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {TESTIMONIALS.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              data-testid={`testimonial-card-${i}`}
-              className={`relative p-8 rounded-3xl border border-[#E5E7EB] shadow-soft transition-all hover:-translate-y-1 hover:shadow-soft-lg ${
-                i === 1 ? 'bg-[#1D3557] text-white' : 'bg-white text-[#1D3557]'
-              }`}
-            >
-              <Quote
-                size={28}
-                className={i === 1 ? 'text-[#D90429]' : 'text-[#D90429]'}
-              />
-              <p
-                className={`mt-5 text-[15px] leading-relaxed ${
-                  i === 1 ? 'text-white/85' : 'text-[#4B5563]'
-                }`}
-              >
-                "{t.quote}"
-              </p>
-              <div className="mt-7 flex items-center gap-3 pt-5 border-t border-dashed border-current/15">
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  className="w-11 h-11 rounded-full object-cover"
-                />
-                <div>
-                  <div
-                    className={`font-display font-semibold text-sm ${
-                      i === 1 ? 'text-white' : 'text-[#1D3557]'
-                    }`}
-                  >
-                    {t.name}
-                  </div>
-                  <div
-                    className={`text-xs ${
-                      i === 1 ? 'text-white/55' : 'text-[#4B5563]'
-                    }`}
-                  >
-                    {t.role}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-/* -------------------------------------------------------------------------- */
 /*  Contact                                                                   */
 /* -------------------------------------------------------------------------- */
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'sent'>('idle');
-
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    // No backend - direct mailto fallback
-    const subject = encodeURIComponent(`New enquiry from ${form.name || 'website'}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\n\n${form.message}`,
-    );
-    window.location.href = `mailto:${getEmail()}?subject=${subject}&body=${body}`;
-    setStatus('sent');
-    setTimeout(() => setStatus('idle'), 4000);
-  };
-
   return (
     <section
       id="contact"
@@ -1154,221 +606,81 @@ const Contact = () => {
         <RedRibbon className="w-full h-full" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10 grid lg:grid-cols-12 gap-12">
-        {/* Left: Info */}
-        <div className="lg:col-span-5">
-          <div className="flex items-center gap-3 mb-4">
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 relative z-10">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="flex justify-center items-center gap-3 mb-4">
             <span className="h-px w-10 bg-[#D90429]" />
             <span className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#D90429]">
               Get in touch
             </span>
+            <span className="h-px w-10 bg-[#D90429]" />
           </div>
           <h2 className="font-display font-bold text-[#1D3557] text-4xl sm:text-5xl tracking-tight leading-[1.08]">
             Let's bring some calm to your IT.
           </h2>
           <p className="mt-5 text-[#4B5563] text-lg leading-relaxed">
-            Book a free, no-obligation consultation — we'll listen, take notes and come back with a
+            Book a free, no-obligation consultation. We'll listen, take notes and come back with a
             clear, costed plan.
           </p>
-
-          <div className="mt-10 space-y-4">
-            <a
-              href="tel:07480506197"
-              data-testid="contact-phone"
-              className="flex items-center gap-4 p-5 rounded-2xl bg-[#F5F5F5] hover:bg-white hover:shadow-soft border border-transparent hover:border-[#E5E7EB] transition-all group"
-            >
-              <div className="w-12 h-12 rounded-xl bg-[#D90429] text-white flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Phone size={20} />
-              </div>
-              <div>
-                <div className="text-xs uppercase tracking-widest font-semibold text-[#4B5563]">
-                  Call us
-                </div>
-                <div className="font-display font-semibold text-[#1D3557] text-lg">
-                  074 8050 6197
-                </div>
-              </div>
-            </a>
-
-            <a
-              href={`mailto:${getEmail()}`}
-              data-testid="contact-email"
-              className="flex items-center gap-4 p-5 rounded-2xl bg-[#F5F5F5] hover:bg-white hover:shadow-soft border border-transparent hover:border-[#E5E7EB] transition-all group"
-            >
-              <div className="w-12 h-12 rounded-xl bg-[#1D3557] text-white flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Mail size={20} />
-              </div>
-              <div className="min-w-0">
-                <div className="text-xs uppercase tracking-widest font-semibold text-[#4B5563]">
-                  Email us
-                </div>
-                <div className="font-display font-semibold text-[#1D3557] text-lg truncate">
-                  {getEmail()}
-                </div>
-              </div>
-            </a>
-
-            <div className="flex items-center gap-4 p-5 rounded-2xl bg-[#F5F5F5] border border-transparent">
-              <div className="w-12 h-12 rounded-xl bg-white shadow-soft text-[#D90429] flex items-center justify-center">
-                <MapPin size={20} />
-              </div>
-              <div>
-                <div className="text-xs uppercase tracking-widest font-semibold text-[#4B5563]">
-                  Location
-                </div>
-                <div className="font-display font-semibold text-[#1D3557] text-lg">
-                  Serving the United Kingdom
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-10 p-6 rounded-2xl bg-[#1D3557] text-white relative overflow-hidden">
-            <div className="absolute -bottom-1 inset-x-0 h-12 opacity-40">
-              <RedRibbon className="w-full h-full" />
-            </div>
-            <div className="relative">
-              <div className="text-xs uppercase tracking-widest font-semibold text-[#D90429]">
-                Working hours
-              </div>
-              <div className="mt-2 font-display font-semibold text-lg">
-                Mon – Fri · 8:00am – 6:00pm
-              </div>
-              <p className="text-white/60 text-sm mt-1">
-                Emergency out-of-hours support available for managed clients.
-              </p>
-            </div>
-          </div>
         </div>
 
-        {/* Right: Form */}
-        <div className="lg:col-span-7">
-          <form
-            onSubmit={submit}
-            data-testid="contact-form"
-            className="relative p-8 sm:p-10 rounded-3xl bg-white border border-[#E5E7EB] shadow-soft-lg"
+        <div className="grid md:grid-cols-3 gap-6">
+          <a
+            href="tel:07480506197"
+            data-testid="contact-phone"
+            className="flex flex-col items-center text-center gap-4 p-8 rounded-3xl bg-[#F5F5F5] hover:bg-white hover:shadow-soft-lg border border-transparent hover:border-[#D90429]/20 transition-all group"
           >
-            <div className="absolute -top-3 -right-3 w-20 h-20 bg-[#D90429]/10 rounded-full blur-2xl" />
-
-            <h3 className="font-display font-semibold text-2xl text-[#1D3557]">
-              Send us a message
-            </h3>
-            <p className="text-[#4B5563] text-sm mt-2">
-              We respond to every enquiry within one working day.
-            </p>
-
-            <div className="mt-8 grid sm:grid-cols-2 gap-5">
-              <Field
-                id="name"
-                label="Full name"
-                required
-                value={form.name}
-                onChange={(v) => setForm({ ...form, name: v })}
-                placeholder="Jane Doe"
-              />
-              <Field
-                id="email"
-                label="Email"
-                type="email"
-                required
-                value={form.email}
-                onChange={(v) => setForm({ ...form, email: v })}
-                placeholder="jane@company.co.uk"
-              />
-              <Field
-                id="phone"
-                label="Phone"
-                type="tel"
-                value={form.phone}
-                onChange={(v) => setForm({ ...form, phone: v })}
-                placeholder="07700 900000"
-                className="sm:col-span-2"
-              />
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="message"
-                  className="block text-xs font-semibold uppercase tracking-[0.2em] text-[#1D3557] mb-2"
-                >
-                  How can we help?
-                </label>
-                <textarea
-                  id="message"
-                  data-testid="contact-input-message"
-                  required
-                  rows={5}
-                  placeholder="Tell us a bit about your business and what you need help with..."
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full px-5 py-4 rounded-2xl bg-[#F5F5F5] border border-transparent focus:border-[#D90429] focus:bg-white focus:ring-4 focus:ring-[#D90429]/10 outline-none transition-all resize-none text-[#1D3557] placeholder:text-[#4B5563]/60"
-                />
+            <div className="w-14 h-14 rounded-2xl bg-[#D90429] text-white flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all shadow-md">
+              <Phone size={24} />
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-widest font-semibold text-[#4B5563] mb-2">
+                Call us
+              </div>
+              <div className="font-display font-bold text-[#1D3557] text-xl">
+                074 8050 6197
               </div>
             </div>
+          </a>
 
-            <button
-              type="submit"
-              data-testid="contact-submit"
-              className="mt-7 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-[#D90429] text-white font-semibold shadow-red-glow hover:bg-[#B30321] hover:-translate-y-0.5 transition-all disabled:opacity-60"
-            >
-              {status === 'sent' ? (
-                <>
-                  <CheckCircle2 size={18} /> Message ready in your email client
-                </>
-              ) : (
-                <>
-                  Send message
-                  <Send size={16} />
-                </>
-              )}
-            </button>
+          <a
+            href={`mailto:${getEmail()}`}
+            data-testid="contact-email"
+            className="flex flex-col items-center text-center gap-4 p-8 rounded-3xl bg-[#F5F5F5] hover:bg-white hover:shadow-soft-lg border border-transparent hover:border-[#1D3557]/20 transition-all group"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-[#1D3557] text-white flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all shadow-md">
+              <Mail size={24} />
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-widest font-semibold text-[#4B5563] mb-2">
+                Email us
+              </div>
+              <div className="font-display font-bold text-[#1D3557] text-xl">
+                {getEmail()}
+              </div>
+            </div>
+          </a>
 
-            <p className="text-xs text-[#4B5563] mt-4">
-              By submitting, you agree to be contacted by Nivara Ltd regarding your enquiry.
-            </p>
-          </form>
+          <div className="flex flex-col items-center text-center gap-4 p-8 rounded-3xl bg-[#F5F5F5] border border-transparent hover:bg-white hover:shadow-soft-lg hover:border-teal-500/20 transition-all group">
+            <div className="w-14 h-14 rounded-2xl bg-white shadow-soft text-teal-600 flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all">
+              <MapPin size={24} />
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-widest font-semibold text-[#4B5563] mb-2 flex items-center justify-center gap-2">
+                Location
+                <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
+              </div>
+              <div className="font-display font-bold text-[#1D3557] text-xl">
+                Serving Hertfordshire
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-const Field = ({
-  id,
-  label,
-  value,
-  onChange,
-  placeholder,
-  type = 'text',
-  required = false,
-  className = '',
-}: {
-  id: string;
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  placeholder?: string;
-  type?: string;
-  required?: boolean;
-  className?: string;
-}) => (
-  <div className={className}>
-    <label
-      htmlFor={id}
-      className="block text-xs font-semibold uppercase tracking-[0.2em] text-[#1D3557] mb-2"
-    >
-      {label}
-    </label>
-    <input
-      id={id}
-      data-testid={`contact-input-${id}`}
-      type={type}
-      required={required}
-      placeholder={placeholder}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="w-full px-5 py-4 rounded-2xl bg-[#F5F5F5] border border-transparent focus:border-[#D90429] focus:bg-white focus:ring-4 focus:ring-[#D90429]/10 outline-none transition-all text-[#1D3557] placeholder:text-[#4B5563]/60"
-    />
-  </div>
-);
 
 /* -------------------------------------------------------------------------- */
 /*  Footer                                                                    */
@@ -1476,12 +788,7 @@ export default function App() {
   return (
     <div data-testid="nivara-landing-root" className="relative bg-white overflow-x-hidden">
       <Navbar />
-      <Hero />
-      <LogoStrip />
-      <About />
       <Services />
-      <WhyUs />
-      <Testimonials />
       <Contact />
       <Footer />
       <BackToTop />
