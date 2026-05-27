@@ -60,3 +60,21 @@ credentials.json
 *.pem
 *.key
 .credentials
+
+# Hosting and deployment platforms
+.vercel/
+.netlify/
+
+# Editor swap and backup files
+*.swp
+*.swo
+*~
+
+# Testing reports and artifacts
+test-results/
+playwright-report/
+cypress/screenshots/
+cypress/videos/
+
+# Common build caches
+.cache/
