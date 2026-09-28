@@ -21,6 +21,8 @@ import {
   MonitorUp,
   Cpu,
   Trash2,
+  ChevronDown,
+  Handshake,
 } from 'lucide-react';
 
 /* -------------------------------------------------------------------------- */
@@ -142,6 +144,7 @@ const Navbar = () => {
 
   const links = [
     { name: 'Services', href: '#services' },
+    { name: 'Business Referral Offer', href: '#referral' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -161,7 +164,7 @@ const Navbar = () => {
             <a
               key={l.name}
               href={l.href}
-              data-testid={`nav-link-${l.name.toLowerCase().replace(' ', '-')}`}
+              data-testid={`nav-link-${l.name.toLowerCase().replace(/\s+/g, '-')}`}
               className="text-[14px] font-medium text-[#1D3557]/80 hover:text-[#D90429] transition-colors"
             >
               {l.name}
@@ -213,7 +216,7 @@ const Navbar = () => {
                   key={l.name}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  data-testid={`mobile-nav-link-${l.name.toLowerCase().replace(' ', '-')}`}
+                  data-testid={`mobile-nav-link-${l.name.toLowerCase().replace(/\s+/g, '-')}`}
                   className="py-3 px-2 text-[#1D3557] font-medium border-b border-[#F5F5F5]"
                 >
                   {l.name}
@@ -338,10 +341,8 @@ const SERVICES = [
 interface KasperskyProduct {
   id: string;
   name: string;
-  retailPrice: string;
   ourPrice: string;
   devices: string;
-  saving: string;
   link: string;
   linkText: string;
 }
@@ -350,70 +351,56 @@ const KASPERSKY_PRODUCTS: KasperskyProduct[] = [
   {
     id: 'premium',
     name: 'Kaspersky Premium',
-    retailPrice: '£20.99',
     ourPrice: '£16.79',
     devices: '1 Device',
-    saving: '20% Off',
     link: 'https://www.kaspersky.co.uk/premium',
     linkText: 'Kaspersky Premium Antivirus with unlimited VPN | Kaspersky',
   },
   {
     id: 'plus',
     name: 'Kaspersky Plus',
-    retailPrice: '£19.99',
     ourPrice: '£16.00',
     devices: '1 Device',
-    saving: '20% Off',
     link: 'https://www.kaspersky.co.uk/plus',
     linkText: 'Kaspersky Plus Antivirus - Advanced Internet Security Software | Kaspersky',
   },
   {
     id: 'standard',
     name: 'Kaspersky Standard',
-    retailPrice: '£15.99',
     ourPrice: '£12.80',
     devices: '1 Device',
-    saving: '20% Off',
     link: 'https://www.kaspersky.co.uk/standard',
     linkText: 'Kaspersky Standard – Antivirus Software Special Offer | Kaspersky',
   },
   {
     id: 'vpn',
     name: 'Kaspersky VPN Secure Connection',
-    retailPrice: '£34.99',
     ourPrice: '£18.47',
     devices: '5 Devices',
-    saving: '47% Off',
     link: 'https://www.kaspersky.co.uk/vpn-secure-connection',
     linkText: 'Kaspersky VPN Secure Connection – Protect Your Online Privacy | Kaspersky',
   },
   {
     id: 'safe-kids',
     name: 'Kaspersky Safe Kids',
-    retailPrice: '£20.99',
     ourPrice: '£12.32',
     devices: '1 user',
-    saving: '41% Off',
     link: 'https://www.kaspersky.co.uk/safe-kids',
     linkText: 'Kaspersky Safe Kids | Parental Control Software | Kaspersky',
   },
   {
     id: 'password-manager',
     name: 'Kaspersky Password Manager',
-    retailPrice: '£15.99',
     ourPrice: '£10.98',
     devices: '1 user',
-    saving: '31% Off',
     link: 'https://www.kaspersky.co.uk/password-manager',
     linkText: 'Kaspersky Password Manager | Kaspersky',
   },
   {
     id: 'small-office',
     name: 'Kaspersky Small Office Security',
-    retailPrice: '£169.95',
     ourPrice: '£100.12',
     devices: '5 users',
-    saving: '41% Off',
     link: 'https://www.kaspersky.co.uk/small-office-security',
     linkText: 'Kaspersky Small Office Security - Business Antivirus Solution | Kaspersky',
   },
@@ -618,9 +605,6 @@ const Services = () => {
                               <span className="font-display font-bold text-base text-[#1D3557]">
                                 {prod.name}
                               </span>
-                              <span className="text-[11px] font-semibold text-teal-700 bg-teal-50 border border-teal-500/20 rounded-md px-2 py-0.5 whitespace-nowrap">
-                                {prod.saving}
-                              </span>
                             </div>
                             <span className="text-xs font-medium text-[#4B5563] bg-[#F5F5F5] rounded-full px-2.5 py-0.5 inline-block mb-4">
                               {prod.devices}
@@ -629,9 +613,6 @@ const Services = () => {
 
                           <div className="mt-4 pt-4 border-t border-[#F5F5F5]">
                             <div className="flex items-baseline gap-2 mb-4">
-                              <span className="text-xs text-[#4B5563]/60 line-through font-medium">
-                                Retail {prod.retailPrice}
-                              </span>
                               <span className="text-lg font-bold text-[#D90429]">
                                 Our Price {prod.ourPrice} *
                               </span>
@@ -788,6 +769,393 @@ const Services = () => {
           </div>
         )}
       </AnimatePresence>
+    </section>
+  );
+};
+
+/* -------------------------------------------------------------------------- */
+/*  Business Referral Offer                                                   */
+/* -------------------------------------------------------------------------- */
+
+const REFERRAL_KASPERSKY_COMMISSION = [
+  { product: 'Kaspersky Premium', commission: '8%' },
+  { product: 'Kaspersky Plus', commission: '8%' },
+  { product: 'Kaspersky Standard', commission: '8%' },
+  { product: 'Kaspersky VPN', commission: '20%' },
+  { product: 'Kaspersky Safe Kids', commission: '15%' },
+  { product: 'Kaspersky Password Manager', commission: '12.5%' },
+  { product: 'Kaspersky Small Office Security', commission: '20%' },
+];
+
+const REFERRAL_LABOUR_COMMISSION = [
+  {
+    title: 'Windows 11 Upgrade',
+    icon: MonitorUp,
+    commission: '10%',
+    basis: 'of the labour charge only',
+    labour: '£50',
+    note: 'Hardware supplied as part of the upgrade is excluded from commission.',
+  },
+  {
+    title: 'Hardware Upgrades (RAM & Storage)',
+    icon: Cpu,
+    commission: '15%',
+    basis: 'of the labour charge only',
+    labour: '£80',
+    note: 'The cost of RAM, SSDs or other hardware is excluded from commission.',
+  },
+  {
+    title: 'Secure Data Wiping',
+    icon: Trash2,
+    commission: '20%',
+    basis: 'of the labour charge',
+    labour: '£110',
+    note: null,
+  },
+];
+
+type ReferralTerm = { title: string; intro?: string[]; items?: (string | { label: string; items: string[] })[]; outro?: string[] };
+
+const REFERRAL_TERMS: ReferralTerm[] = [
+  {
+    title: 'Eligibility Requirements',
+    items: [
+      'Be a non-IT business with an established customer base.',
+      'Be actively trading.',
+      'Be registered with Companies House (where applicable).',
+      'Provide Company Registration Number.',
+      'Provide VAT Registration Number (if applicable).',
+      'Provide Registered Office Address.',
+      'Provide the names of Directors or business owners.',
+      'Have at least five genuine customers likely to purchase our products or services.',
+      'Agree to all Referral Partner Programme Terms and Conditions.',
+    ],
+  },
+  {
+    title: "Offer's General Rules",
+    items: [
+      "Referral Partners must not advertise prices below Nivara Ltd's approved selling prices.",
+      'Referral Partners must not modify or reproduce Nivara Ltd branding or marketing material without written permission.',
+      'Referral Partners must not represent themselves as employees or authorised technical engineers of Nivara Ltd.',
+      'Referral Partners must not collect payments from customers on behalf of Nivara Ltd.',
+      'Referral Partners must not issue quotations or invoices using the Nivara Ltd name.',
+      {
+        label: 'Referral Partners must not disclose confidential information including:',
+        items: ['Wholesale prices', 'Reseller discounts', 'Internal documents', 'Commercial pricing', 'Commission structure'],
+      },
+      'Referral Partners are responsible for their own Corporation Tax, Income Tax and VAT obligations.',
+      'Nivara Ltd reserves the right to amend products, services, prices, commission rates and programme rules by providing reasonable notice.',
+      {
+        label: 'You are not expected to:',
+        items: [
+          'Provide technical advice.',
+          'Recommend specific products.',
+          'Prepare quotations.',
+          'Issue invoices.',
+          'Collect payments.',
+          'Install products.',
+          'Provide after sale technical support.',
+          'Handle complaints or warranty issues.',
+        ],
+      },
+      'Referral commission does not create any employment, agency or partnership relationship between the parties.',
+      'Referral Partners operate independent businesses.',
+      'Participation in the Referral Partner offer does not grant exclusive rights within any geographical area or customer sector.',
+    ],
+  },
+  {
+    title: 'Your Role as a Referral Partner',
+    items: [
+      'Identify customers who may benefit from our products and services.',
+      'Introduce/promote Nivara Ltd to them using our approved marketing material.',
+      'Encourage interested customers to contact us directly or arrange an introduction via telephone, email or face-to-face meetings.',
+      'Allow Nivara Ltd to handle all technical and commercial discussions.',
+      {
+        label: 'Once the customer has been introduced, Nivara Ltd will manage the entire sales process, including:',
+        items: [
+          'Product recommendations',
+          'Consultations',
+          'Quotations',
+          'Billing and invoicing',
+          'Payment collection',
+          'Product supply',
+          'Installation',
+          'After sale technical support',
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Commission Payment Conditions',
+    intro: [
+      'Referral commission becomes payable only after all of the following conditions have been satisfied with respect to the products and/or services offered to your customers by Nivara Ltd.',
+    ],
+    items: [
+      { label: 'Kaspersky Products', items: ['Customer has paid in full.', 'Licence has been supplied.', 'Installation (where purchased) has been completed.'] },
+      { label: 'Windows 11 Upgrade', items: ['Upgrade completed successfully.', 'Computer tested.'] },
+      { label: 'Hardware Upgrade', items: ['Hardware installed successfully.', 'System operating correctly.'] },
+      {
+        label: 'Secure Data Wiping',
+        items: [
+          'Data wiping completed.',
+          'Certificate of Data Destruction or written confirmation issued (where applicable).',
+          'Service completed.',
+        ],
+      },
+    ],
+    outro: [
+      'No commission is payable on cancelled or fraudulent orders.',
+      'If a customer cancels an order before making a full payment, the associated referral commission will not be payable.',
+    ],
+  },
+  {
+    title: 'Payment of Referral Commission',
+    items: [
+      "Referral commission is paid only to the Referral Partner's registered business bank account.",
+      'Payments will not be made to personal bank accounts unless otherwise agreed.',
+      'Commission is paid only after all payment conditions have been met.',
+      'Nivara Ltd reserves the right to offset any overpayments or incorrect commission payments.',
+    ],
+  },
+  {
+    title: 'Customer Payment Policy',
+    items: [
+      'All quotations and invoices will be issued by Nivara Ltd.',
+      'Customers must pay Nivara Ltd directly.',
+      'Referral Partners must never collect customer payments.',
+      'Customers remain customers of Nivara Ltd throughout the engagement.',
+    ],
+  },
+  {
+    title: 'Termination of Partnership',
+    items: [
+      "Either party may terminate the Referral Partnership by giving at least one week's written notice.",
+      {
+        label: 'Termination will not affect:',
+        items: [
+          'Products already purchased with full payment.',
+          'Services already scheduled.',
+          'Commission already earned on completed qualifying sales.',
+        ],
+      },
+    ],
+  },
+];
+
+const ReferralBullets: React.FC<{ items: string[] }> = ({ items }) => (
+  <ul className="space-y-2">
+    {items.map((item) => (
+      <li key={item} className="flex gap-2.5 text-[#4B5563] text-[15px] leading-relaxed">
+        <CheckCircle2 size={16} className="text-teal-600 shrink-0 mt-1" />
+        <span>{item}</span>
+      </li>
+    ))}
+  </ul>
+);
+
+const Referral = () => {
+  const [openTerm, setOpenTerm] = useState<number | null>(0);
+
+  const scrollToContact = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <section
+      id="referral"
+      data-testid="referral-section"
+      className="relative py-28 bg-[#FAFAFA] overflow-hidden border-t border-[#E5E7EB]"
+    >
+      <div className="absolute -top-24 -left-24 w-[380px] h-[380px] rounded-full bg-[#D90429]/6 blur-[100px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-8">
+        {/* Intro */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="flex justify-center items-center gap-3 mb-4">
+            <span className="h-px w-10 bg-[#D90429]" />
+            <span className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#D90429]">
+              Business Referral Offer
+            </span>
+            <span className="h-px w-10 bg-[#D90429]" />
+          </div>
+          <h2 className="font-display font-bold text-[#1D3557] text-4xl sm:text-5xl tracking-tight leading-[1.08]">
+            Win-Win-Win <span className="text-[#D90429]">(WWW)</span>
+          </h2>
+          <p className="mt-5 text-[#4B5563] text-lg leading-relaxed">
+            Nivara Ltd is proud to introduce a referral partner offer called WWW or Win-Win-Win,
+            where everyone is a winner, whether it is you, your customers or us.
+          </p>
+        </div>
+
+        {/* Services covered */}
+        <div className="mb-16">
+          <h3 className="font-display font-bold text-2xl text-[#1D3557] mb-2">Business Services Covered</h3>
+          <p className="text-[#4B5563] mb-6">The Referral Partner Offer currently applies to the following services:</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { name: 'Kaspersky Authorised Reseller', icon: ShieldCheck },
+              { name: 'Windows 11 Upgrade', icon: MonitorUp },
+              { name: 'Hardware Upgrades (RAM & Storage)', icon: Cpu },
+              { name: 'Secure Data Wiping', icon: Trash2 },
+            ].map(({ name, icon: Icon }, i) => (
+              <div
+                key={name}
+                className="flex items-center gap-3 bg-white border border-[#E5E7EB] rounded-2xl p-4"
+              >
+                <div className="w-10 h-10 rounded-xl bg-[#D90429]/10 text-[#D90429] flex items-center justify-center shrink-0">
+                  <Icon size={20} />
+                </div>
+                <span className="font-semibold text-[#1D3557] text-sm leading-snug">
+                  {i + 1}. {name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Commission schedule */}
+        <div className="mb-16">
+          <h3 className="font-display font-bold text-2xl text-[#1D3557] mb-6">Referral Commission Schedule*</h3>
+
+          <div className="grid lg:grid-cols-5 gap-6">
+            <div className="lg:col-span-3 bg-white border border-[#E5E7EB] rounded-3xl p-6 sm:p-8">
+              <div className="flex items-center gap-2 mb-5">
+                <ShieldCheck size={20} className="text-[#D90429]" />
+                <h4 className="font-display font-bold text-lg text-[#1D3557]">1. Kaspersky Products</h4>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-[15px]">
+                  <thead>
+                    <tr className="border-b border-[#E5E7EB] text-xs uppercase tracking-wider text-[#4B5563]">
+                      <th className="py-2.5 pr-4 font-semibold">Product</th>
+                      <th className="py-2.5 font-semibold text-right">Referral Commission</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {REFERRAL_KASPERSKY_COMMISSION.map((row) => (
+                      <tr key={row.product} className="border-b border-[#F5F5F5] last:border-0">
+                        <td className="py-3 pr-4 font-medium text-[#1D3557]">{row.product}</td>
+                        <td className="py-3 text-right text-[#4B5563]">
+                          <span className="font-bold text-[#D90429]">{row.commission}</span> of the total
+                          selling price
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="lg:col-span-2 flex flex-col gap-4">
+              {REFERRAL_LABOUR_COMMISSION.map((svc, i) => {
+                const Icon = svc.icon;
+                return (
+                  <div key={svc.title} className="bg-white border border-[#E5E7EB] rounded-3xl p-6 flex-1">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Icon size={18} className="text-[#D90429]" />
+                      <h4 className="font-display font-bold text-[#1D3557]">
+                        {i + 2}. {svc.title}
+                      </h4>
+                    </div>
+                    <p className="text-[#4B5563] text-[15px]">
+                      <span className="text-2xl font-bold text-[#D90429]">{svc.commission}</span>{' '}
+                      <span className="font-semibold text-[#1D3557]">{svc.basis}</span>
+                    </p>
+                    <p className="text-sm text-[#4B5563] mt-1">
+                      Current labour charge: <span className="font-bold text-[#1D3557]">{svc.labour}</span>
+                    </p>
+                    {svc.note && <p className="text-xs text-[#4B5563]/80 mt-2">({svc.note})</p>}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <p className="mt-6 text-sm text-[#4B5563] leading-relaxed max-w-4xl">
+            *Ts&Cs apply. For all Ts&Cs please refer to the <strong>Controlling Factors</strong> section
+            below. Although commission on an individual sale may appear modest, it can become a valuable
+            source of recurring income as the number of successful referrals grows.
+          </p>
+        </div>
+
+        {/* Controlling factors */}
+        <div className="mb-14">
+          <h3 className="font-display font-bold text-2xl text-[#1D3557] mb-6">Controlling Factors</h3>
+          <div className="space-y-3">
+            {REFERRAL_TERMS.map((term, i) => {
+              const isOpen = openTerm === i;
+              return (
+                <div key={term.title} className="bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => setOpenTerm(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    data-testid={`referral-term-${i + 1}`}
+                    className="w-full flex items-center justify-between gap-4 px-6 py-4 text-left hover:bg-[#FAFAFA] transition-colors"
+                  >
+                    <span className="font-display font-bold text-[#1D3557]">
+                      {i + 1}. {term.title}
+                    </span>
+                    <ChevronDown
+                      size={20}
+                      className={`text-[#D90429] shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-6 pt-1 space-y-4">
+                          {term.intro && <ReferralBullets items={term.intro} />}
+                          {term.items?.map((item) =>
+                            typeof item === 'string' ? (
+                              <ReferralBullets key={item} items={[item]} />
+                            ) : (
+                              <div key={item.label}>
+                                <p className="font-semibold text-[#1D3557] text-[15px] mb-2">{item.label}</p>
+                                <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 pl-1">
+                                  {item.items.map((sub) => (
+                                    <li key={sub} className="flex gap-2 text-[#4B5563] text-sm">
+                                      <span className="w-1.5 h-1.5 rounded-sm bg-[#D90429] shrink-0 mt-2" />
+                                      {sub}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ),
+                          )}
+                          {term.outro && <ReferralBullets items={term.outro} />}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-5 bg-[#1D3557] rounded-3xl px-8 py-7">
+          <div className="flex items-center gap-4 text-white">
+            <Handshake size={32} className="text-[#D90429] shrink-0 hidden sm:block" />
+            <p className="font-display font-bold text-lg sm:text-xl">Interested in becoming a Referral Partner?</p>
+          </div>
+          <button
+            type="button"
+            onClick={scrollToContact}
+            data-testid="referral-cta"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#D90429] hover:bg-[#B30321] text-white rounded-full font-semibold transition-colors whitespace-nowrap"
+          >
+            Contact Us <ArrowRight size={16} />
+          </button>
+        </div>
+      </div>
     </section>
   );
 };
@@ -989,6 +1357,7 @@ export default function App() {
     <div data-testid="nivara-landing-root" className="relative bg-white overflow-x-hidden">
       <Navbar />
       <Services />
+      <Referral />
       <Contact />
       <Footer />
       <BackToTop />
